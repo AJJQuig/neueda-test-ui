@@ -5,9 +5,14 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
     "lint": "ng lint",
+    "pree2e": "npm run webmanager-clean && npm run webmanager-update && npm run webmanager-start",
     "e2e": "ng e2e",
+    "webmanager-clean": "./node_modules/webdriver-manager/bin/webdriver-manager clean",
+    "webmanager-update": "./node_modules/webdriver-manager/bin/webdriver-manager update --versions.chrome 79.0.3945.36",
+    "webmanager-start": "./node_modules/webdriver-manager/bin/webdriver-manager start  --versions.chrome 79.0.3945.36 --detach --seleniumPort 20010",
     "compodoc": "compodoc -p tsconfig.base.json -d ./src/static/documentation",
     "compodoc-serve": "compodoc -s tsconfig.base.json"
   },
@@ -30,20 +35,35 @@
     "@angular/cli": "~10.0.6",
     "@angular/compiler-cli": "~10.0.9",
     "@compodoc/compodoc": "^1.1.11",
+    "@types/jest": "^26.0.14",
     "@types/node": "^12.11.1",
-    "@types/jasmine": "~3.5.0",
-    "@types/jasminewd2": "~2.0.3",
     "codelyzer": "^6.0.0",
-    "jasmine-core": "~3.5.0",
-    "jasmine-spec-reporter": "~5.0.0",
-    "karma": "~5.0.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~3.0.2",
-    "karma-jasmine": "~3.3.0",
-    "karma-jasmine-html-reporter": "^1.5.0",
-    "protractor": "~7.0.0",
+    "cucumber": "^6.0.5",
+    "cucumber-pretty": "^6.0.0",
+    "jest": "^26.4.2",
+    "jest-preset-angular": "^8.3.1",
+    "protractor": "^7.0.0",
+    "protractor-cucumber-framework": "^6.2.1",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.9.5"
+    "typescript": "~3.9.5",
+    "webdriver-manager": "^13.0.0"
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupJest.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/dist/",
+      "<rootDir>/src/test.ts"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "<rootDir>/tsconfig.spec.json",
+        "stringifyContentPathRegex": "\\.html$"
+      }
+    }
   }
 }

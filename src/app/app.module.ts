@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {CoreModule} from '../core/core.module';
 import {AccountModule} from '../account/account.module';
 import {NavigationModule} from '../navigation/navigation.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import {NavigationModule} from '../navigation/navigation.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     CoreModule,
     AccountModule,
     NavigationModule

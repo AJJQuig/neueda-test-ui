@@ -9,6 +9,8 @@ In order to run the app on Docker, navigate in a terminal run the following comm
 `docker run -d -it -p 80:80/tcp --name angular-app alanquigley/angular-app:latest`
 
 Once it is running in the container, you can navigate to your docker machine IP or localhost:80 to hit the app
+To kill the docker container instance, run the following command, replacing <container-id> with the id docker generated when the run command was ran.
+`docker container kill <container-id>`
 
 ## Development server
 

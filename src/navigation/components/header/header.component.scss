@@ -1,0 +1,24 @@
+.navbar {
+  height: 104px;
+  img {
+    height: 5rem;
+    width: 5rem;
+  }
+}
+.navbar-brand {
+  display: inline-block;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+}
+.app-name {
+  display: inline-block;
+  font-size: 1.5rem;
+  border-left: 1px solid #000;
+  margin-left: 2rem;
+  padding: 6px 0 6px 2rem;
+  margin-bottom: 0;
+  font-weight: 400;
+  vertical-align: middle !important;
+}

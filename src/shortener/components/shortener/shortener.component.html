@@ -1,0 +1,22 @@
+<form [formGroup]="shortenerForm" (ngSubmit)="shortenUrl()">
+  <app-card>
+      <div class="row justify-content-center pb-3">
+        <div class="col-5 form-group" [class.is-populated]="shortenerForm.controls.url.value">
+          <label for="shortener-input" >Enter your url: </label>
+          <input type="url" id="shortener-input" class="form-control" formControlName="url" [ngClass]="{ 'is-invalid': shortenClicked && shortenerForm.controls.url.errors }" >
+          <div *ngIf="shortenClicked && shortenerForm.controls.url.errors" class="invalid-feedback">
+            <div *ngIf="shortenerForm.controls.url.errors.required">
+              Please fill in this field
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div>
+          <button type="submit" class="btn btn-primary">Get shortened Url</button>
+        </div>
+      </div>
+  </app-card>
+</form>
+
+

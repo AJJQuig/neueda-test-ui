@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UrlService} from '../../../core/services/url.service';
 import {ShortenUrlServiceResponse} from '../../../core/models/urlServiceModels/urlServiceModels';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-shortener-page',
@@ -10,9 +11,11 @@ import {ShortenUrlServiceResponse} from '../../../core/models/urlServiceModels/u
 export class ShortenerPageComponent implements OnInit {
 
   shortenedUrl: string;
-  constructor(private urlService: UrlService) { }
+  constructor(private urlService: UrlService) {
+  }
 
   ngOnInit(): void {
+
   }
 
   shortenUrl(urlForm) {
@@ -25,5 +28,4 @@ export class ShortenerPageComponent implements OnInit {
       }
     );
   }
-
 }

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {catchError, map} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
-import {ShortenUrlServiceResponse} from '../models/urlServiceModels/urlServiceModels';
+import {ShortenUrlServiceResponse, UrlObject} from '../models/urlServiceModels/urlServiceModels';
 
 @Injectable({
   providedIn: 'root'
@@ -14,25 +14,32 @@ export class UrlService {
 
 
   shortenUrl(url: string): Observable<ShortenUrlServiceResponse> {
-    return this.httpClient.post<ShortenUrlServiceResponse>(`${environment.apiBaseUrl}/url/shorten`, this.createFormData(url)).pipe(
+    return this.httpClient.post<ShortenUrlServiceResponse>(`${environment.apiBaseUrl}/url/shorten`, this.createFormDataShorten(url)).pipe(
       catchError((error) => {
         return of(error);
       }),
-      map((response) => response.body)
+      map((response) => ({
+        shortenedUrl: response.shortenedUrl,
+        url: {
+          originalUrl: response.originalUrl,
+          clicks: response.clicks,
+        }
+      }))
     );
   }
 
-  private createFormData(url: string): FormData {
-    const formData = new FormData();
-    formData.append('url', JSON.stringify(url));
-    return formData;
+  redirectUrl(shortUrl: string): Observable<ShortenUrlServiceResponse> {
+    return this.httpClient.get<ShortenUrlServiceResponse>(`${environment.apiBaseUrl}/redirect/${shortUrl}`).pipe(
+      catchError((error) => {
+        return of(error);
+      }),
+      map((response) => (response))
+    );
   }
 
-  public getHttpOptions() {
-    return {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-    };
+  private createFormDataShorten(url: string): FormData {
+    const formData = new FormData();
+    formData.append('url', url);
+    return formData;
   }
 }

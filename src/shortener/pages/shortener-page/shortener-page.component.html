@@ -1,4 +1,14 @@
-<div class="row d-flex justify-content-center pb-3">
-  <h1>Shorten the length of your Url today!</h1>
+<div class="pb-5">
+  <app-header></app-header>
 </div>
-<app-shortener (shorten)="shortenUrl($event)"></app-shortener>
+<div class="container">
+  <div class="row d-flex justify-content-center pb-3">
+    <h1>Shorten the length of your Url today!</h1>
+  </div>
+  <div class="pb-3">
+    <app-shortener (shorten)="shortenUrl($event)"></app-shortener>
+  </div>
+  <div *ngIf="shortenedUrl" class="card p-3">
+    <h3>Your Shortened Url: {{shortenedUrl}}</h3>
+  </div>
+</div>

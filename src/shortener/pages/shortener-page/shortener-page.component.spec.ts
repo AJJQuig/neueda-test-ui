@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShortenerPageComponent } from './shortener-page.component';
+import {HeaderComponent} from '../../../shared/components/header/header.component';
+import {UrlService} from '../../../core/services/url.service';
+import {UrlServiceStub} from '../../../testing/serviceMocks/url.service.mock';
+import {ShortenerComponent} from '../../components/shortener/shortener.component';
+import {CardComponent} from '../../../shared/components/card/card.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 describe('ShortenerPageComponent', () => {
   let component: ShortenerPageComponent;
@@ -8,7 +14,9 @@ describe('ShortenerPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShortenerPageComponent ]
+      declarations: [ ShortenerPageComponent, HeaderComponent, ShortenerComponent, CardComponent],
+      imports: [ReactiveFormsModule],
+      providers: [{provide: UrlService, useValue: UrlServiceStub}]
     })
     .compileComponents();
   }));

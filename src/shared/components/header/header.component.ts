@@ -1,6 +1,4 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {FormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
 
 
 /**

@@ -13,6 +13,14 @@ export class UrlService {
   constructor(private httpClient: HttpClient) { }
 
 
+  getUrls(): Observable<ShortenUrlServiceResponse[]> {
+    return this.httpClient.get<ShortenUrlServiceResponse[]>(`${environment.apiBaseUrl}/urls`).pipe(
+      catchError((error) => {
+        return of(error);
+      }),
+      map((response) => (response))
+    );
+  }
   shortenUrl(url: string): Observable<ShortenUrlServiceResponse> {
     return this.httpClient.post<ShortenUrlServiceResponse>(`${environment.apiBaseUrl}/urls/shorten`, this.createFormDataShorten(url)).pipe(
       catchError((error) => {

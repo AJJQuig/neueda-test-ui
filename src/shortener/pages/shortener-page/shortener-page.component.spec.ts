@@ -8,6 +8,7 @@ import {ShortenerComponent} from '../../components/shortener/shortener.component
 import {CardComponent} from '../../../shared/components/card/card.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
+import {ClipboardDirective} from '../../../shared/directives/clipboard.directive';
 
 describe('ShortenerPageComponent', () => {
   let component: ShortenerPageComponent;
@@ -15,7 +16,7 @@ describe('ShortenerPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShortenerPageComponent, HeaderComponent, ShortenerComponent, CardComponent],
+      declarations: [ ShortenerPageComponent, HeaderComponent, ShortenerComponent, CardComponent, ClipboardDirective],
       imports: [ReactiveFormsModule, RouterTestingModule],
       providers: [{provide: UrlService, useValue: UrlServiceStub}]
     })

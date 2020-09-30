@@ -5,12 +5,20 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Running on Docker
 
 In order to run the app on Docker, navigate in a terminal run the following commands in terminal (make sure you are in the applications directory)
+
 `docker build -t alanquigley/angular-app .`
+
 `docker run -d -it -p 80:80/tcp --name angular-app alanquigley/angular-app:latest`
 
 Once it is running in the container, you can navigate to your docker machine IP or localhost:80 to hit the app
 To kill the docker container instance, run the following command, replacing <container-id> with the id docker generated when the run command was ran.
 `docker container kill <container-id>`
+
+## Documentation server
+
+Run `compodoc -p tsconfig.base.json` to generate the full application documentation followed by `compodoc -s tsconfig.base.json --port 8090` to serve the documentation gitbook
+
+Alternatively run the npm scripts associated with these: `compodoc` and `compodoc-serve`
 
 ## Development server
 

@@ -14,15 +14,15 @@ export class UrlService {
 
 
   shortenUrl(url: string): Observable<ShortenUrlServiceResponse> {
-    return this.httpClient.post<ShortenUrlServiceResponse>(`${environment.apiBaseUrl}/url/shorten`, this.createFormDataShorten(url)).pipe(
+    return this.httpClient.post<ShortenUrlServiceResponse>(`${environment.apiBaseUrl}/urls/shorten`, this.createFormDataShorten(url)).pipe(
       catchError((error) => {
         return of(error);
       }),
       map((response) => ({
         shortenedUrl: response.shortenedUrl,
         url: {
-          originalUrl: response.originalUrl,
-          clicks: response.clicks,
+          originalUrl: response.url.originalUrl,
+          clicks: response.url.clicks,
         }
       }))
     );

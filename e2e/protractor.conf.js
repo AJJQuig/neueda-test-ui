@@ -7,7 +7,7 @@
  * @type { import("protractor").Config }
  */
 exports.config = {
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 30000,
   specs: ['./features/shortener/shortener.feature'],
 
   capabilities: {
@@ -16,12 +16,10 @@ exports.config = {
     },
     browserName: 'chrome'
   },
-  directConnect: false,
+  directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),
-
-  seleniumAddress: 'http://localhost:20010/wd/hub',
 
   cucumberOpts: {
     compiler: 'ts:ts-node/register',

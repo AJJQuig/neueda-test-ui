@@ -15,3 +15,7 @@ Given('I have loaded the app', async function loaded() {
 Given('I open the environment {string}', async function setup(envName) {
   browser.get(env[envName]);
 });
+
+Given('I wait for {int} seconds', async (pause) => {
+  await browser.sleep(pause * 1000);
+});

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UrlService} from '../../../core/services/url.service';
 import {ShortenUrlServiceResponse} from '../../../core/models/urlServiceModels/urlServiceModels';
-import {ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-shortener-page',
@@ -11,7 +11,8 @@ import {ActivatedRoute} from '@angular/router';
 export class ShortenerPageComponent implements OnInit {
 
   shortenedUrl: string;
-  constructor(private urlService: UrlService) {
+  urlSizeDifference: number
+  constructor(private urlService: UrlService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -21,11 +22,23 @@ export class ShortenerPageComponent implements OnInit {
   shortenUrl(urlForm) {
     this.urlService.shortenUrl(urlForm.controls.url.value).subscribe((shortenUrlServiceResponse) => {
         this.shortenedUrl = shortenUrlServiceResponse.shortenedUrl;
+        this.urlSizeDifference = shortenUrlServiceResponse.url.originalUrl.length - shortenUrlServiceResponse.shortenedUrl.length;
         console.log(this.shortenedUrl);
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+
+  navigate(number) {
+    switch (number) {
+      case 0:
+        this.router.navigateByUrl('');
+        break;
+      case 1:
+        this.router.navigateByUrl('/account/urls');
+        break;
+    }
   }
 }

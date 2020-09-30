@@ -7,6 +7,7 @@ import {UrlServiceStub} from '../../../testing/serviceMocks/url.service.mock';
 import {ShortenerComponent} from '../../components/shortener/shortener.component';
 import {CardComponent} from '../../../shared/components/card/card.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('ShortenerPageComponent', () => {
   let component: ShortenerPageComponent;
@@ -15,7 +16,7 @@ describe('ShortenerPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ShortenerPageComponent, HeaderComponent, ShortenerComponent, CardComponent],
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, RouterTestingModule],
       providers: [{provide: UrlService, useValue: UrlServiceStub}]
     })
     .compileComponents();
